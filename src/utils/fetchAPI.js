@@ -22,14 +22,12 @@ const filterResult = (data) => {
   };
 };
 
-const fetchAPI = async () => {
-  const URL = 'https://api.dictionaryapi.dev/api/v2/entries/en/give';
+const fetchAPI = async (search = 'man') => {
+  const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`;
 
   const response = await fetch(URL);
 
   const data = await response.json();
-
-  console.log(data);
 
   return filterResult(data);
 };

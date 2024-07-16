@@ -2,15 +2,11 @@ import { useEffect, useState } from "react";
 import fetchAPI from "./utils/fetchAPI";
 import PartOfSpeech from "./components/PartOfSpeech";
 import WordPanel from "./components/WordPanel";
+import Header from "./components/Header";
+import SearchInput from "./components/SearchInput";
 
 export default function App() {
   const [word, setWord] = useState({});
-  const [dark, setDark] = useState(false);
-
-  const darkModeHandler = () => {
-    setDark(!dark);
-    document.documentElement.classList.toggle("dark");
-  }
 
   useEffect(() => {
     fetchAPI().then((data) => setWord(data))
@@ -24,7 +20,8 @@ export default function App() {
 
   return (
     <main className="container mx-auto px-4">
-      <button onClick={() => darkModeHandler() }>toggle theme</button>
+      <Header />
+      <SearchInput setWord={setWord}/>
     <WordPanel 
     wordPronunciation={
       ({
