@@ -26,8 +26,6 @@ const fetchAPI = async (search = 'english') => {
 
   const data = await response.json();
 
-  console.log(data);
-
   if (data.title === 'No Definitions Found') {
     return data;
   }

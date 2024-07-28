@@ -4,6 +4,7 @@ import Header from './components/Header';
 import SearchInput from './components/SearchInput';
 import DefinitionPanel from './components/DefinitionPanel';
 import Loading from './components/Loading';
+import Footer from './components/Footer';
 
 export default function App() {
   const [word, setWord] = useState({});
@@ -26,20 +27,26 @@ export default function App() {
   }, [mounted]);
 
   return (
-    <main className="container mx-auto px-5 max-w-screen-lg">
+    <>
       <Header />
-      <SearchInput
-        setWord={ setWord }
-        setNotFound={ setNotFound }
-        setIsLoading={ setIsLoading }
-      />
+      <main
+        className={ `container mx-auto px-5 max-w-screen-lg ${notFound ? 'h-lvh' : ''}` }
+      >
+        <SearchInput
+          setWord={ setWord }
+          setNotFound={ setNotFound }
+          setIsLoading={ setIsLoading }
+        />
 
-      {notFound && !isLoading
-      && <h1 className="text-3xl text-center">No definition found</h1>}
+        {notFound && !isLoading
+      && <h1 className="text-2xl text-center">No definition found</h1>}
 
-      {isLoading && <Loading />}
+        {isLoading && <Loading />}
 
-      {!notFound && !isLoading && <DefinitionPanel word={ word } />}
-    </main>
+        {!notFound && !isLoading && <DefinitionPanel word={ word } />}
+      </main>
+
+      <Footer />
+    </>
   );
 }

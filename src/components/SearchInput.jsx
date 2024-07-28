@@ -23,6 +23,7 @@ export default function SearchInput({ setWord, setNotFound, setIsLoading }) {
       setIsLoading(false);
       setNotFound(false);
       setWord(data);
+      setSearch('');
     });
   };
 
